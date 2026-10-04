@@ -1,0 +1,41 @@
+# secrets: never commit
+.env
+.env.*
+**/.env
+**/.env.*
+*.pem
+*.key
+
+# dependencies and build output
+node_modules/
+**/node_modules
+dist/
+.vite/
+__pycache__/
+*.pyc
+
+# raw / downloaded data and big caches (re-download with scripts/fetch_extra_data.py and the notebooks)
+work/
+artifacts/cache/
+artifacts/shots/
+*.npz
+*.log
+final_done
+
+# generated media (video project): rebuild with video/make_*.py, render*.mjs, mix*.py
+video/frames/
+video/shots/
+video/voices/
+video/sfx/
+video/music*.mp3
+video/*.mp4
+video/*.m4a
+video/leaf.jpg
+video/timing*.json
+video/audio_plan*.json
+
+# editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

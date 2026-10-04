@@ -1,0 +1,178 @@
+[
+ {
+  "code": "en",
+  "native": "English",
+  "english": "English",
+  "flag": "GB",
+  "dir": "ltr",
+  "human": true,
+  "region": "world",
+  "nllb": "eng_Latn",
+  "bcp": "en"
+ },
+ {
+  "code": "fr",
+  "native": "Français",
+  "english": "French",
+  "flag": "FR",
+  "dir": "ltr",
+  "human": true,
+  "region": "world",
+  "nllb": "fra_Latn",
+  "bcp": "fr"
+ },
+ {
+  "code": "es",
+  "native": "Español",
+  "english": "Spanish",
+  "flag": "ES",
+  "dir": "ltr",
+  "human": true,
+  "region": "world",
+  "nllb": "spa_Latn",
+  "bcp": "es"
+ },
+ {
+  "code": "pt",
+  "native": "Português",
+  "english": "Portuguese",
+  "flag": "PT",
+  "dir": "ltr",
+  "human": true,
+  "region": "world",
+  "nllb": "por_Latn",
+  "bcp": "pt"
+ },
+ {
+  "code": "ar",
+  "native": "العربية",
+  "english": "Arabic",
+  "flag": "EG",
+  "dir": "rtl",
+  "human": true,
+  "region": "world",
+  "nllb": "arb_Arab",
+  "bcp": "ar"
+ },
+ {
+  "code": "hi",
+  "native": "हिन्दी",
+  "english": "Hindi",
+  "flag": "IN",
+  "dir": "ltr",
+  "human": true,
+  "region": "asia",
+  "nllb": "hin_Deva",
+  "bcp": "hi"
+ },
+ {
+  "code": "sw",
+  "native": "Kiswahili",
+  "english": "Swahili",
+  "flag": "KE",
+  "dir": "ltr",
+  "human": true,
+  "region": "africa",
+  "nllb": "swh_Latn",
+  "bcp": "sw"
+ },
+ {
+  "code": "rw",
+  "native": "Kinyarwanda",
+  "english": "Kinyarwanda",
+  "flag": "RW",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "kin_Latn",
+  "bcp": "rw"
+ },
+ {
+  "code": "rn",
+  "native": "Ikirundi",
+  "english": "Kirundi",
+  "flag": "BI",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "run_Latn",
+  "bcp": "rn"
+ },
+ {
+  "code": "so",
+  "native": "Soomaali",
+  "english": "Somali",
+  "flag": "SO",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "som_Latn",
+  "bcp": "so"
+ },
+ {
+  "code": "yo",
+  "native": "Yorùbá",
+  "english": "Yoruba",
+  "flag": "NG",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "yor_Latn",
+  "bcp": "yo"
+ },
+ {
+  "code": "ha",
+  "native": "Hausa",
+  "english": "Hausa",
+  "flag": "NG",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "hau_Latn",
+  "bcp": "ha"
+ },
+ {
+  "code": "ig",
+  "native": "Igbo",
+  "english": "Igbo",
+  "flag": "NG",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "ibo_Latn",
+  "bcp": "ig"
+ },
+ {
+  "code": "am",
+  "native": "አማርኛ",
+  "english": "Amharic",
+  "flag": "ET",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "amh_Ethi",
+  "bcp": "am"
+ },
+ {
+  "code": "om",
+  "native": "Afaan Oromoo",
+  "english": "Oromo",
+  "flag": "ET",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "gaz_Latn",
+  "bcp": "om"
+ },
+ {
+  "code": "ti",
+  "native": "ትግርኛ",
+  "english": "Tigrinya",
+  "flag": "ER",
+  "dir": "ltr",
+  "human": false,
+  "region": "africa",
+  "nllb": "tir_Ethi",
+  "bcp": "ti"
+ }
+]

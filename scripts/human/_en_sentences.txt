@@ -1,0 +1,140 @@
+0|Act today.
+1|Avoid wounding the tree.
+2|Check your plants every week.
+3|Control the small jumping insects on your citrus trees.
+4|Control whiteflies with yellow sticky traps or neem oil.
+5|Cover big cuts with a wound paste.
+6|Cover seedbeds with a net.
+7|Cover the soil with mulch.
+8|Cut off and burn the badly affected shoots.
+9|Cut out dead branches and burn them.
+10|Cut out the dead wood in dry weather and burn it.
+11|Do not kill the helpful insects.
+12|Do not let plants suffer from dust or dry soil.
+13|Do not plant maize in the same field every year.
+14|Do not plant peppers in the same place for two or three years.
+15|Do not plant potatoes in the same field every year.
+16|Do not plant tomatoes in the same place for two or three years.
+17|Do not plant tomatoes or potatoes in the same place every year.
+18|Do not plant too close together.
+19|Do not spray in the hot midday sun.
+20|Do not store tubers that look sick.
+21|Do not touch the plants when they are wet.
+22|Do not use too much nitrogen fertilizer.
+23|Do not water over the leaves.
+24|Feed the plants well.
+25|Feed the trees well.
+26|Give the plants space.
+27|Heap soil on the rows to cover the tubers.
+28|Hold the phone close to one leaf.
+29|I am not sure.
+30|If rust is heavy before the tassel appears, spray a fungicide. Follow the label.
+31|If the problem gets worse, ask your agriculture officer or agro-dealer for help.
+32|If the spots keep spreading, spray a fungicide that is approved for this crop. Follow the label.
+33|It makes a white powder on the leaves.
+34|It makes big dark wet patches on the leaves and white mold in damp weather.
+35|It makes bright yellow-orange spots on the leaves.
+36|It makes brown leaf spots with a purple edge and rots the fruit.
+37|It makes brown round spots with black dots, and the grapes dry up black.
+38|It makes brown spots with rings on the leaves and sometimes on the fruit.
+39|It makes brown spots with rings, like a target, first on the old lower leaves.
+40|It makes dark brown spots with straight edges on the leaves.
+41|It makes dark olive-green to black rough spots on leaves and fruit.
+42|It makes dark wet patches on the leaves and white mold under the leaf when it is damp. It can destroy the field in a few days.
+43|It makes long gray-brown rectangular spots on the leaves.
+44|It makes long gray-green spots shaped like cigars.
+45|It makes many small round spots with a gray center on the lower leaves.
+46|It makes pale yellow spots on top of the leaf and olive-brown mold under the leaf.
+47|It makes small dark spots on the leaves and fruit, and holes in the leaves.
+48|It makes small dark spots with a yellow ring on the leaves and rough spots on the fruit.
+49|It makes small dark wet-looking spots on the leaves and fruit.
+50|It makes small purple spots that join together and the leaf edges look burnt.
+51|It makes small round red-brown bumps on both sides of the leaf.
+52|It makes yellow-orange powder spots under the leaf, and then the leaves fall.
+53|Keep dust away from the trees.
+54|Keep the ground clean under the vines.
+55|Keep the leaf in the center.
+56|Keep the leaves dry.
+57|Keep the vineyard clean.
+58|Keep weeds away.
+59|Light rust usually does not need treatment.
+60|No disease was seen.
+61|No treatment is needed.
+62|Open the greenhouse or space the plants so air can pass.
+63|Pick up and burn fallen leaves and spotted leaves.
+64|Plant certified clean seed potatoes.
+65|Plant early in the season.
+66|Plant in full sun.
+67|Plant only clean, certified seedlings.
+68|Plant resistant apple varieties.
+69|Plant resistant seed.
+70|Plant resistant varieties.
+71|Plant scab-resistant varieties.
+72|Please take the photo again in good light with one leaf in the center.
+73|Please take the photo again.
+74|Prune only in dry weather.
+75|Prune so air and sun reach the leaves.
+76|Prune so air can pass through.
+77|Prune the coffee and the shade trees so air can pass through.
+78|Prune the tree so air can pass through.
+79|Pull out and burn sick plants.
+80|Pull out and destroy sick plants early.
+81|Pull out and destroy the sick plants.
+82|Pull out and destroy the sick plants. Do not leave them in the field.
+83|Remove and burn badly sick plants.
+84|Remove and burn the sick tree. Tell your agriculture officer.
+85|Remove and bury the badly sick leaves.
+86|Remove dried grapes and spotted leaves and burn them.
+87|Remove juniper or cedar trees growing nearby.
+88|Remove or bury old maize stalks after harvest.
+89|Remove or bury the old maize stalks after harvest.
+90|Remove rotten and dried fruit from the tree and the ground.
+91|Remove spotted leaves.
+92|Remove the sick leaves.
+93|Remove the spotted leaves.
+94|Remove the spotted lower leaves.
+95|Remove the worst leaves and fruit.
+96|Remove the worst leaves.
+97|Replace old plants.
+98|Rotate maize with beans or other crops.
+99|Rotate potatoes with other crops.
+100|Rotate tomatoes with other crops.
+101|Space the plants.
+102|Spray a copper fungicide as the label says.
+103|Spray a copper product as the label says.
+104|Spray a fungicide approved for potatoes. Follow the label.
+105|Spray a fungicide approved for tomatoes. Follow the label.
+106|Spray soap water or neem oil on the underside of the leaves.
+107|Spray sulphur as the label says.
+108|Spray sulphur or neem oil as the label says.
+109|Spray water under the leaves.
+110|Stake the plants.
+111|The leaf looks healthy.
+112|The leaves curl up, turn yellow and stay small, and the plant stops growing.
+113|The leaves get small yellow dots and fine webs.
+114|The leaves get yellow and red stripes between the veins.
+115|The leaves get yellow patches and the fruit stays small, bitter and lopsided.
+116|The leaves show light and dark green patches and look twisted.
+117|The leaves turn bronze or reddish, mostly in dry and dusty weather.
+118|There is no cure.
+119|These are tiny insects under the leaf.
+120|This disease is caused by bacteria.
+121|This does not look like a plant leaf.
+122|This is a fungus that likes damp, closed places.
+123|This is a fungus that lives in the wood of the vine.
+124|This is a fungus.
+125|This is a guide only.
+126|This is a serious disease spread by a small insect.
+127|This is a very fast and dangerous fungus.
+128|This is a virus spread by whiteflies.
+129|This is a virus.
+130|Use a miticide only if it is really needed. Follow the label.
+131|Use clean seed.
+132|Use clean tools.
+133|Use daylight.
+134|Use resistant seed.
+135|Use resistant varieties.
+136|Wash your hands and tools with soap after touching sick plants.
+137|Wash your hands before touching the plants.
+138|Watch your trees for the small insects.
+139|Water at the base of the plant.

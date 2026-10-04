@@ -1,0 +1,280 @@
+{
+ "version": 2,
+ "input_size": 160,
+ "mean": [
+  0.48500001430511475,
+  0.4560000002384186,
+  0.4059999883174896
+ ],
+ "std": [
+  0.2290000021457672,
+  0.2240000069141388,
+  0.22499999403953552
+ ],
+ "layout": "NCHW",
+ "model_file": "crop_disease_fp32.onnx",
+ "outputs": [
+  "crop_logits",
+  "lab_logits"
+ ],
+ "crops": [
+  "apple",
+  "banana",
+  "bean",
+  "blueberry",
+  "cassava",
+  "cherry",
+  "coffee",
+  "grape",
+  "maize",
+  "orange",
+  "other_plant",
+  "peach",
+  "pepper",
+  "potato",
+  "raspberry",
+  "soybean",
+  "squash",
+  "strawberry",
+  "tomato",
+  "not_plant"
+ ],
+ "labels": [
+  "apple___apple_scab",
+  "apple___black_rot",
+  "apple___cedar_apple_rust",
+  "apple___healthy",
+  "banana___unsupported",
+  "bean___unsupported",
+  "blueberry___healthy",
+  "cassava___unsupported",
+  "cherry___healthy",
+  "cherry___powdery_mildew",
+  "coffee___healthy",
+  "coffee___red_spider_mite",
+  "coffee___rust",
+  "grape___black_rot",
+  "grape___esca_black_measles",
+  "grape___healthy",
+  "grape___leaf_blight_isariopsis_leaf_spot",
+  "maize___cercospora_leaf_spot_gray_leaf_spot",
+  "maize___common_rust",
+  "maize___healthy",
+  "maize___northern_leaf_blight",
+  "orange___haunglongbing_citrus_greening",
+  "other_plant___unsupported",
+  "peach___bacterial_spot",
+  "peach___healthy",
+  "pepper___bacterial_spot",
+  "pepper___healthy",
+  "potato___early_blight",
+  "potato___healthy",
+  "potato___late_blight",
+  "raspberry___healthy",
+  "soybean___healthy",
+  "squash___powdery_mildew",
+  "strawberry___healthy",
+  "strawberry___leaf_scorch",
+  "tomato___bacterial_spot",
+  "tomato___early_blight",
+  "tomato___healthy",
+  "tomato___late_blight",
+  "tomato___leaf_mold",
+  "tomato___septoria_leaf_spot",
+  "tomato___spider_mites_two_spotted_spider_mite",
+  "tomato___target_spot",
+  "tomato___tomato_mosaic_virus",
+  "tomato___tomato_yellow_leaf_curl_virus",
+  "not_plant"
+ ],
+ "label_to_crop": [
+  0,
+  0,
+  0,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  5,
+  6,
+  6,
+  6,
+  7,
+  7,
+  7,
+  7,
+  8,
+  8,
+  8,
+  8,
+  9,
+  10,
+  11,
+  11,
+  12,
+  12,
+  13,
+  13,
+  13,
+  14,
+  15,
+  16,
+  17,
+  17,
+  18,
+  18,
+  18,
+  18,
+  18,
+  18,
+  18,
+  18,
+  18,
+  18,
+  19
+ ],
+ "not_plant_crop_index": 19,
+ "not_plant_label_index": 45,
+ "unsupported_crops": [
+  "banana",
+  "bean",
+  "cassava",
+  "other_plant"
+ ],
+ "temperature": 1.0272,
+ "thresholds": {
+  "not_plant_p": 0.5,
+  "min_confidence": 0.3
+ },
+ "metrics": {
+  "clean": {
+   "crop_acc": 0.9158276319503784,
+   "cond_acc": 0.8521949052810669,
+   "cond_macro_f1": 0.8238325350444965
+  },
+  "field_sim": {
+   "crop_acc": 0.7225130796432495,
+   "cond_acc": 0.5940394401550293,
+   "cond_macro_f1": 0.5084500221722156
+  },
+  "ood_auroc": 0.9865,
+  "open_set": {
+   "unsupported_plants_flagged": 0.8391,
+   "per_crop": {
+    "banana": 0.775,
+    "bean": 0.85,
+    "cassava": 0.802,
+    "other_plant": 0.925
+   },
+   "wrongly_answered_as_supported": 0.1609
+  },
+  "robustness": {
+   "blur_sigma": [
+    [
+     0,
+     0.9183333516120911,
+     0.8616666793823242
+    ],
+    [
+     1,
+     0.9200000166893005,
+     0.8616666793823242
+    ],
+    [
+     2,
+     0.9233333468437195,
+     0.8550000190734863
+    ],
+    [
+     3,
+     0.8899999856948853,
+     0.8233333230018616
+    ],
+    [
+     4,
+     0.6349999904632568,
+     0.5766666531562805
+    ]
+   ],
+   "brightness_gamma": [
+    [
+     0.3,
+     0.8550000190734863,
+     0.7699999809265137
+    ],
+    [
+     0.5,
+     0.9049999713897705,
+     0.8500000238418579
+    ],
+    [
+     1,
+     0.9183333516120911,
+     0.8616666793823242
+    ],
+    [
+     2,
+     0.9200000166893005,
+     0.8600000143051147
+    ],
+    [
+     3,
+     0.9150000214576721,
+     0.8500000238418579
+    ]
+   ],
+   "jpeg_quality": [
+    [
+     90,
+     0.9200000166893005,
+     0.8666666746139526
+    ],
+    [
+     50,
+     0.9133333563804626,
+     0.8516666889190674
+    ],
+    [
+     25,
+     0.9116666913032532,
+     0.8500000238418579
+    ],
+    [
+     10,
+     0.8833333253860474,
+     0.8100000023841858
+    ]
+   ],
+   "noise_std": [
+    [
+     0,
+     0.9183333516120911,
+     0.8616666793823242
+    ],
+    [
+     10,
+     0.9150000214576721,
+     0.8533333539962769
+    ],
+    [
+     25,
+     0.8983333110809326,
+     0.82833331823349
+    ],
+    [
+     40,
+     0.871666669845581,
+     0.7716666460037231
+    ]
+   ]
+  },
+  "size_mb": 3.87,
+  "int8_vs_fp32_cond_acc": [
+   0.6050000190734863,
+   0.0037499999161809683
+  ]
+ },
+ "notes": "Trained on PlantVillage (lab) + RoCoLe coffee (field) + PlantDoc (field); banana/bean/cassava/other plants are recognised as unsupported. Expect lower accuracy on real farm photos than on the test split."
+}

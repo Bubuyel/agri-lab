@@ -1,0 +1,92 @@
+{
+ "fr": {
+  "strings": 10,
+  "machine": 9,
+  "english_fallback": 1,
+  "chrF_round_trip": 37.4
+ },
+ "es": {
+  "strings": 9,
+  "machine": 9,
+  "english_fallback": 0,
+  "chrF_round_trip": 44.1
+ },
+ "pt": {
+  "strings": 9,
+  "machine": 9,
+  "english_fallback": 0,
+  "chrF_round_trip": 35.1
+ },
+ "ar": {
+  "strings": 9,
+  "machine": 7,
+  "english_fallback": 2,
+  "chrF_round_trip": 31.9
+ },
+ "hi": {
+  "strings": 9,
+  "machine": 9,
+  "english_fallback": 0,
+  "chrF_round_trip": 47.9
+ },
+ "sw": {
+  "strings": 10,
+  "machine": 10,
+  "english_fallback": 0,
+  "chrF_round_trip": 52.1
+ },
+ "rw": {
+  "strings": 173,
+  "machine": 143,
+  "english_fallback": 30,
+  "chrF_round_trip": 39.5
+ },
+ "rn": {
+  "strings": 173,
+  "machine": 147,
+  "english_fallback": 26,
+  "chrF_round_trip": 40.4
+ },
+ "so": {
+  "strings": 173,
+  "machine": 150,
+  "english_fallback": 23,
+  "chrF_round_trip": 54.3
+ },
+ "yo": {
+  "strings": 173,
+  "machine": 137,
+  "english_fallback": 36,
+  "chrF_round_trip": 40.9
+ },
+ "ha": {
+  "strings": 291,
+  "machine": 253,
+  "english_fallback": 38,
+  "chrF_round_trip": 48.2
+ },
+ "ig": {
+  "strings": 291,
+  "machine": 249,
+  "english_fallback": 42,
+  "chrF_round_trip": 46.9
+ },
+ "am": {
+  "strings": 291,
+  "machine": 247,
+  "english_fallback": 44,
+  "chrF_round_trip": 47.5
+ },
+ "om": {
+  "strings": 291,
+  "machine": 233,
+  "english_fallback": 58,
+  "chrF_round_trip": 36.3
+ },
+ "ti": {
+  "strings": 291,
+  "machine": 239,
+  "english_fallback": 52,
+  "chrF_round_trip": 38.3
+ }
+}

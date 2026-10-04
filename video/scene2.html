@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Agri Lab technical walkthrough</title>
+<style>
+@font-face { font-family: Outfit; src: url(fonts/outfit-latin-wght-normal.woff2); font-weight: 100 900; }
+@font-face { font-family: Inter; src: url(fonts/inter-latin-wght-normal.woff2); font-weight: 100 900; }
+:root { --bg: #0b0f14; --panel: #131a22; --line: #243040; --tx: #e6edf3; --dim: #8b98a8; --g: #5be49b; --r: #ff5d6c; --a: #ffcc66; --b: #6cb6ff; --p: #c792ea; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; background: var(--bg); overflow: hidden; font-family: Inter, sans-serif; color: var(--tx); }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: radial-gradient(90% 90% at 50% 40%, #121a24 0%, #0b0f14 70%); }
+#grid { position: absolute; inset: 0; background-image: radial-gradient(#1c2634 1.5px, transparent 1.5px); background-size: 48px 48px; opacity: .55; }
+.beat { position: absolute; inset: 0; opacity: 0; }
+.abs { position: absolute; }
+.h { font-family: Outfit; font-weight: 700; letter-spacing: -0.035em; }
+.mono { font-family: Consolas, "Cascadia Mono", monospace; }
+.card { background: var(--panel); border: 1.5px solid var(--line); border-radius: 26px; }
+.chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px; background: #182230; border: 1.5px solid var(--line); font: 600 26px Inter; }
+.code { position: absolute; background: #0e141b; border: 1.5px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+.code .bar { height: 54px; background: #151d27; display: flex; align-items: center; gap: 10px; padding: 0 20px; border-bottom: 1.5px solid var(--line); color: var(--dim); font: 500 22px Consolas, monospace; }
+.code .bar i { width: 14px; height: 14px; border-radius: 50%; display: block; } .code pre { padding: 24px 28px; font: 500 30px/1.5 Consolas, "Cascadia Mono", monospace; white-space: pre; color: var(--tx); }
+.k { color: var(--b); } .s { color: var(--g); } .c { color: #66758a; } .f { color: var(--p); } .n { color: var(--a); }
+.cur { display: inline-block; width: 14px; height: 30px; background: var(--g); vertical-align: -5px; margin-left: 2px; }
+#top { position: absolute; left: 0; right: 0; top: 0; height: 96px; display: flex; align-items: center; justify-content: space-between; padding: 0 64px; z-index: 5; }
+#prog { position: absolute; left: 0; top: 0; height: 6px; background: var(--g); width: 0; z-index: 6; }
+.step { font: 700 26px Inter; letter-spacing: .12em; color: var(--g); }
+.sticker { position: absolute; padding: 14px 24px; border-radius: 18px; font: 700 34px Outfit; letter-spacing: -0.02em; transform-origin: center; }
+.bar-wrap { position: absolute; bottom: 0; left: 0; right: 0; }
+.arrow { position: absolute; height: 4px; background: var(--dim); border-radius: 4px; transform-origin: 0 50%; }
+.arrow::after { content: ''; position: absolute; right: -2px; top: -9px; border-left: 18px solid var(--dim); border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+.node { position: absolute; border-radius: 22px; padding: 18px 26px; text-align: center; font: 600 28px Inter; border: 2px solid var(--line); background: #172230; }
+</style></head>
+<body><div id="stage"><div id="grid"></div><div id="prog"></div>
+<div id="top">
+  <div style="display:flex;align-items:center;gap:18px">
+    <svg viewBox="0 0 100 100" width="52" height="52" style="color:#fff"><path fill="#5be49b" d="M47.5 33.5C39 33.5 34.2 27.4 35.2 19.6C42.4 19.6 47.4 24.8 47.5 33.5Z"/><path fill="#5be49b" d="M52.5 33.5C51.6 22 59.6 13.6 74.5 11.4C75.6 25.6 66.8 33.6 52.5 33.5Z"/><path fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" d="M40.5 38V52L24.5 79.5C19.5 88.5 25 92 31 92H69C75 92 80.5 88.5 75.5 79.5L59.5 52V38M35.5 38H64.5"/><path fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" d="M29.5 80.5Q39 74.5 50 79.5T70.5 80.5"/></svg>
+    <span class="h" style="font-size:34px;font-weight:500">Agri <b>Lab</b> <span style="color:var(--dim);font-weight:500">· under the hood</span></span>
+  </div>
+  <div class="step" id="step"></div>
+</div>
+
+<!-- b1 title -->
+<div class="beat" id="b1">
+  <div class="abs h" id="t1a" style="left:0;right:0;top:300px;text-align:center;font-size:190px">4 AI models.</div>
+  <div class="abs h" id="t1b" style="left:0;right:0;top:500px;text-align:center;font-size:190px;color:var(--g)">0 internet.</div>
+  <div class="abs" id="t1c" style="left:0;right:0;top:760px;display:flex;justify-content:center;gap:26px">
+    <span class="chip">🌿 Plant doctor</span><span class="chip">📈 Prices</span><span class="chip">🌧️ Rain</span><span class="chip">🪴 Soil</span>
+  </div>
+</div>
+
+<!-- b2 data -->
+<div class="beat" id="b2">
+  <div class="abs h" style="left:90px;top:150px;font-size:76px">Step 1 · <span style="color:var(--g)">Data</span></div>
+  <div class="abs" id="d_cards" style="left:90px;top:290px;width:820px"></div>
+  <div class="code" id="c2" style="left:980px;top:290px;width:850px;height:420px"><div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i>&nbsp; fetch_data.py</div><pre id="c2t"></pre></div>
+  <div class="abs card" id="folder" style="left:980px;top:760px;width:850px;height:130px;display:flex;align-items:center;gap:26px;padding:0 36px"><span style="font-size:60px">📁</span><span class="mono" style="font-size:34px">data/ <span style="color:var(--dim)">· 100% open datasets</span></span></div>
+  <div class="sticker" id="s_open" style="left:1440px;top:640px;background:var(--g);color:#06260f;transform:rotate(-6deg);font-size:44px">OPEN DATA ✓</div>
+</div>
+
+<!-- b3 vision -->
+<div class="beat" id="b3">
+  <div class="abs h" style="left:90px;top:150px;font-size:76px">The leaf model <span style="color:var(--dim);font-weight:500;font-size:44px">· PyTorch</span></div>
+  <div class="node" id="n_photo" style="left:90px;top:360px;width:230px;height:230px;padding:0;overflow:hidden;background:url(leaf.jpg) center/cover;border-radius:28px"></div>
+  <div class="abs" style="left:90px;top:610px;width:230px;text-align:center;font:600 26px Inter;color:var(--dim)">160×160 photo</div>
+  <div class="arrow" id="a1" style="left:335px;top:474px;width:90px"></div>
+  <div class="node" id="n_net" style="left:440px;top:340px;width:440px;height:270px;border-color:var(--g);background:#122a20"><div class="h" style="font-size:40px;margin-top:40px;white-space:nowrap">MobileNetV3-Small</div><div style="margin-top:14px;color:var(--g);font:600 36px Inter">0.97 M parameters</div><div style="margin-top:12px;color:var(--dim);font:500 24px Inter">laptop CPU · no GPU</div></div>
+  <div class="arrow" id="a2" style="left:895px;top:420px;width:70px;transform:rotate(-18deg)"></div>
+  <div class="arrow" id="a3" style="left:895px;top:530px;width:70px;transform:rotate(18deg)"></div>
+  <div class="node" id="n_h1" style="left:980px;top:330px;width:290px">crop head<br><span style="color:var(--dim);font-size:24px">20 classes</span></div>
+  <div class="node" id="n_h2" style="left:980px;top:490px;width:290px">disease head<br><span style="color:var(--dim);font-size:24px">46 classes</span></div>
+  <div class="code" id="c3" style="left:90px;top:690px;width:1180px;height:290px"><div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i>&nbsp; augment.py</div><pre id="c3t" style="padding-top:18px"></pre></div>
+  <div class="card abs" id="no_ban" style="left:1330px;top:360px;width:500px;height:300px;padding:34px;text-align:center"><div style="font-size:84px">🍌</div><div class="h" style="font-size:44px;margin-top:10px"><span id="ban1" style="color:var(--r);text-decoration:line-through">spider mites</span></div><div class="h" id="ban2" style="font-size:44px;color:var(--g)">not in our data yet</div></div>
+  <div class="sticker" id="s_cpu" style="left:1330px;top:700px;background:#2a1e0f;color:var(--a);border:2px solid var(--a);transform:rotate(3deg)">CPU only. Pure suffering 🥲</div>
+</div>
+
+<!-- b4 shrink -->
+<div class="beat" id="b4">
+  <div class="abs h" style="left:90px;top:150px;font-size:76px">Shrinking <span style="color:var(--dim);font-weight:500;font-size:44px">· ONNX + int8</span></div>
+  <div class="card abs" style="left:90px;top:290px;width:900px;height:560px"></div>
+  <div class="abs" style="left:150px;top:330px;font:600 28px Inter;color:var(--dim)">MODEL SIZE (MB)</div>
+  <div class="abs" id="bar1" style="left:170px;width:300px;bottom:290px;height:0;background:var(--g);border-radius:18px 18px 0 0"></div>
+  <div class="abs" id="bar2" style="left:560px;width:300px;bottom:290px;height:0;background:var(--a);border-radius:18px 18px 0 0"></div>
+  <div class="abs h" id="v1" style="left:170px;width:300px;text-align:center;font-size:54px">3.9</div>
+  <div class="abs h" id="v2" style="left:560px;width:300px;text-align:center;font-size:54px">1.3</div>
+  <div class="abs" style="left:170px;width:300px;text-align:center;top:790px;font:600 28px Inter">float32</div>
+  <div class="abs" style="left:560px;width:300px;text-align:center;top:790px;font:600 28px Inter">int8</div>
+  <div class="card abs" id="acc" style="left:1040px;top:290px;width:790px;height:300px;padding:34px 40px">
+    <div style="font:600 28px Inter;color:var(--dim)">FIELD-STYLE ACCURACY</div>
+    <div style="display:flex;gap:60px;margin-top:28px"><div><div class="h" style="font-size:90px;color:var(--g)">70.6%</div><div style="font:600 26px Inter;color:var(--dim)">float32</div></div><div><div class="h" id="acc8" style="font-size:90px;color:var(--r)">0.9%</div><div style="font:600 26px Inter;color:var(--dim)">int8</div></div></div></div>
+  <div class="sticker" id="s_rng" style="left:1070px;top:612px;background:var(--r);color:#fff;transform:rotate(-4deg);font-size:46px">RANDOM NUMBER GENERATOR</div>
+  <div class="code" id="c4" style="left:1040px;top:770px;width:790px;height:110px"><pre id="c4t" style="padding:22px 24px;font-size:26px"></pre></div>
+  <div class="chip abs" id="s_ship" style="left:1040px;top:925px;background:#122a20;border-color:var(--g);color:var(--g);font-size:30px">✓ shipped float32 · 4 ms / photo</div>
+</div>
+
+<!-- b5 other models -->
+<div class="beat" id="b5">
+  <div class="abs h" style="left:90px;top:150px;font-size:76px">The other three <span style="color:var(--dim);font-weight:500;font-size:44px">· still zero servers</span></div>
+  <div class="card abs" id="p1" style="left:90px;top:290px;width:560px;height:560px;padding:36px">
+    <div class="h" style="font-size:52px">📈 Prices</div><div style="font:600 26px Inter;color:var(--dim);margin-top:8px">LightGBM</div>
+    <div style="margin-top:34px;display:flex;align-items:center;gap:16px;flex-wrap:wrap"><span class="chip">🌳 trees</span><span style="font-size:36px">→</span><span class="chip mono">{ } JSON</span><span style="font-size:36px">→</span><span class="chip mono">eval.ts</span></div>
+    <div class="mono" style="margin-top:36px;color:var(--dim);font-size:26px;line-height:1.5">gap-free quantile ranges,<br>calibrated intervals</div></div>
+  <div class="card abs" id="p2" style="left:680px;top:290px;width:560px;height:560px;padding:36px">
+    <div class="h" style="font-size:52px">🌧️ Rain</div><div style="font:600 26px Inter;color:var(--dim);margin-top:8px">Markov chain · CHIRPS</div>
+    <div class="abs node" style="left:50px;top:230px;width:190px;border-color:var(--a)">☀️ dry</div><div class="abs node" style="left:310px;top:230px;width:190px;border-color:var(--b)">🌧️ wet</div>
+    <div class="abs" style="left:250px;top:218px;font-size:44px">⇄</div>
+    <div class="mono abs" style="left:36px;top:370px;color:var(--dim);font-size:26px;line-height:1.5">P(wet today | last 2 days)</div></div>
+  <div class="card abs" id="p3" style="left:1270px;top:290px;width:560px;height:560px;padding:36px">
+    <div class="h" style="font-size:52px">🪴 Soil</div><div style="font:600 26px Inter;color:var(--dim);margin-top:8px">iSDAsoil + crop rules</div>
+    <div style="margin-top:30px;display:grid;gap:14px"><div class="chip" style="justify-content:space-between"><span>Potassium</span><span style="color:var(--g)">▮▮▮▯</span></div><div class="chip" style="justify-content:space-between"><span>Phosphorus</span><span style="color:var(--a)">▮▮▯▯</span></div><div class="chip" style="justify-content:space-between"><span>Nitrogen</span><span style="color:var(--g)">▮▮▮▯</span></div><div class="chip" style="justify-content:space-between"><span>pH</span><span style="color:var(--g)">▮▮▮▮</span></div></div></div>
+  <div class="sticker" id="s_srv" style="left:560px;top:880px;background:#1c1014;color:var(--r);border:2px solid var(--r);font-size:46px;transform:rotate(-2deg)">🖥️ servers: 0</div>
+</div>
+
+<!-- b6 offline -->
+<div class="beat" id="b6">
+  <div class="abs h" style="left:90px;top:150px;font-size:76px">Offline <span style="color:var(--g)">by design</span></div>
+  <div class="card abs" id="browser" style="left:90px;top:290px;width:900px;height:430px;padding:30px 36px">
+    <div style="font:600 26px Inter;color:var(--dim)">THE PHONE'S BROWSER</div>
+    <div style="display:flex;gap:24px;margin-top:26px"><div class="node" style="position:relative;width:390px;border-color:var(--g)">ONNX Runtime<br><span style="color:var(--g);font-size:26px">WebAssembly</span></div><div class="node" style="position:relative;width:390px;border-color:var(--b)">Service worker<br><span style="color:var(--b);font-size:26px">cache ≈ 30 MB</span></div></div>
+    <div style="margin-top:30px;font:500 28px Inter;color:var(--dim)">NLLB translations: run once at build time, shipped as JSON</div></div>
+  <div class="chip abs" id="plane" style="left:90px;top:770px;background:#0e141b;font-size:34px;padding:18px 30px">✈️ Airplane mode <span id="tog" style="display:inline-block;width:78px;height:42px;border-radius:30px;background:#2a3544;position:relative;vertical-align:middle;margin-left:14px"><i id="knob" style="position:absolute;top:4px;left:4px;width:34px;height:34px;border-radius:50%;background:#fff"></i></span></div>
+  <div class="code" id="c6" style="left:1030px;top:290px;width:800px;height:250px"><div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i>&nbsp; sw.js</div><pre id="c6t" style="font-size:27px;padding-top:18px"></pre></div>
+  <div class="card abs" id="honest" style="left:1030px;top:580px;width:800px;height:300px;padding:36px 44px"><div style="font:600 28px Inter;color:var(--dim)">REAL-WORLD (FIELD-STYLE PHOTOS)</div><div class="h" style="font-size:130px;color:var(--a);line-height:1.1;margin-top:14px">72%</div><div style="font:600 30px Inter">crop accuracy · honest AI 🤝</div></div>
+</div>
+
+<!-- b7 outro -->
+<div class="beat" id="b7">
+  <svg id="lg" viewBox="0 0 100 100" width="260" height="260" style="position:absolute;left:830px;top:200px;color:#fff"><path fill="#5be49b" d="M47.5 33.5C39 33.5 34.2 27.4 35.2 19.6C42.4 19.6 47.4 24.8 47.5 33.5Z"/><path fill="#5be49b" d="M52.5 33.5C51.6 22 59.6 13.6 74.5 11.4C75.6 25.6 66.8 33.6 52.5 33.5Z"/><path fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" d="M40.5 38V52L24.5 79.5C19.5 88.5 25 92 31 92H69C75 92 80.5 88.5 75.5 79.5L59.5 52V38M35.5 38H64.5"/><path fill="none" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" d="M29.5 80.5Q39 74.5 50 79.5T70.5 80.5"/><path fill="#5be49b" d="M50 62L52.7 67.3L58 70L52.7 72.7L50 78L47.3 72.7L42 70L47.3 67.3Z"/></svg>
+  <div class="abs h" id="o1" style="left:0;right:0;top:520px;text-align:center;font-size:120px">Smaller than a cat photo.</div>
+  <div class="abs h" id="o2" style="left:0;right:0;top:680px;text-align:center;font-size:150px;color:var(--g)">Ship it. 🚀</div>
+</div>
+</div>
+
+<script>
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x))
+const seg = (t, a, b) => clamp((t - a) / (b - a))
+const ease = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2)
+const easeOut = (p) => 1 - Math.pow(1 - p, 3)
+const back = (p) => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2) }
+const $ = (id) => document.getElementById(id)
+let T = null
+function setTiming(o) { T = o }
+function pop(id, a, o = {}) { const el = $(id), p = seg(window.__t, a, a + (o.d ?? 0.45)); el.style.opacity = ease(clamp(p * 1.6)); const s = 0.6 + 0.4 * back(p); el.style.transform = `${o.rot ? `rotate(${o.rot}deg) ` : ''}scale(${p > 0 ? s : 0.6}) translateY(${(1 - easeOut(p)) * (o.y ?? 24)}px)` }
+
+// ---- tiny syntax highlighter + typewriter
+function hl(code) {
+  const re = /(#.*|\/\/.*)|("[^"\n]*"|'[^'\n]*'|`[^`\n]*`)|\b(import|from|for|in|def|return|const|self|class|if|else|await|async|True|False|None)\b|\b(\d+\.?\d*)\b|([A-Za-z_][\w.]*)(?=\()/g
+  const out = []; let last = 0, m
+  while ((m = re.exec(code))) {
+    if (m.index > last) out.push([code.slice(last, m.index), ''])
+    out.push([m[0], m[1] ? 'c' : m[2] ? 's' : m[3] ? 'k' : m[4] ? 'n' : 'f']); last = m.index + m[0].length
+  }
+  if (last < code.length) out.push([code.slice(last), ''])
+  return out
+}
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+function typeInto(id, code, t, start, cps) {
+  const toks = hl(code); let n = Math.max(0, Math.floor((t - start) * cps)), html = ''
+  for (const [txt, cls] of toks) { if (n <= 0) break; const part = txt.slice(0, n); n -= txt.length; html += cls ? `<span class="${cls}">${esc(part)}</span>` : esc(part) }
+  $(id).innerHTML = html + (t >= start ? '<span class="cur"></span>' : '')
+}
+const CODE2 = 'import urllib.request\n\nfor name, url in DATASETS.items():\n    urllib.request.urlretrieve(url, f"data/{name}.zip")\n\n# PlantVillage, PlantDoc, WFP, CHIRPS, iSDAsoil'
+const CODE3 = 'leaf = paste(leaf, random_background())  # no lab-table cheating\nclasses += ["not_plant", "banana", "cassava"]'
+const CODE4 = 'torch.onnx.export(model, x, "crop_disease_fp32.onnx")'
+const CODE6 = "self.addEventListener('fetch', (e) =>\n  e.respondWith(caches.match(e.request)))"
+const STEPS = { b1: '', b2: '01 · DATA', b3: '02 · TRAIN', b4: '03 · SHRINK', b5: '04 · THE OTHER MODELS', b6: '05 · OFFLINE', b7: '' }
+const CARDS = [['PlantVillage', 'leaf photos', 'b2', 'PlantVillage'], ['PlantDoc', 'field photos', 'b2', 'PlantDoc'], ['WFP', 'market prices', 'b2', 'WFP'], ['CHIRPS', 'satellite rain', 'b2', 'CHIRPS'], ['iSDAsoil', 'soil maps', 'b2', 'iSDA']]
+$('d_cards').innerHTML = CARDS.map((c, i) => `<div class="card" id="dc${i}" style="display:flex;align-items:center;justify-content:space-between;padding:0 34px;height:96px;margin-bottom:22px"><span class="h" style="font-size:44px">${c[0]}</span><span style="font:600 28px Inter;color:var(--dim)">${c[1]}</span></div>`).join('')
+
+function render(t) {
+  window.__t = t
+  const B = T.beats, Q = T.cues, order = ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7']
+  $('prog').style.width = `${(t / T.total) * 100}%`
+  let cur = 'b1'
+  for (const b of order) if (t >= B[b].start - 0.25) cur = b
+  $('step').textContent = STEPS[cur]
+  order.forEach((b, i) => {
+    const s = B[b].start - 0.25, e = (i < order.length - 1 ? B[order[i + 1]].start - 0.25 : T.total + 1)
+    const o = ease(seg(t, s, s + 0.3)) * (i < order.length - 1 ? 1 - ease(seg(t, e - 0.25, e)) : 1)
+    $(b).style.opacity = i === 0 ? (t < 0.2 ? ease(seg(t, 0, 0.25)) : o + (t < s ? 1 : 0) * 0) : o
+  })
+  // b1
+  { const s = 0.2
+    const a = easeOut(seg(t, s, s + 0.6)), b = easeOut(seg(t, s + 0.55, s + 1.15)), c = easeOut(seg(t, s + 1.5, s + 2.2))
+    $('t1a').style.opacity = a; $('t1a').style.transform = `translateY(${(1 - a) * 40}px)`
+    $('t1b').style.opacity = b; $('t1b').style.transform = `translateY(${(1 - b) * 40}px)`
+    $('t1c').style.opacity = c; $('t1c').style.transform = `translateY(${(1 - c) * 30}px)` }
+  // b2
+  CARDS.forEach((c, i) => { const a = Q[c[2]][c[3]] - 0.1; const p = easeOut(seg(t, a, a + 0.45)); const el = $('dc' + i); el.style.opacity = p; el.style.transform = `translateX(${(1 - p) * -90}px)` })
+  typeInto('c2t', CODE2, t, B.b2.start + 0.4, 60)
+  { const p = easeOut(seg(t, Q.b2.iSDA, Q.b2.iSDA + 0.6)); $('folder').style.opacity = p; $('folder').style.transform = `translateY(${(1 - p) * 40}px)` }
+  pop('s_open', Q.b2['All open'] + 0.1, { rot: -6 })
+  // b3
+  { const a = easeOut(seg(t, B.b3.start, B.b3.start + 0.5)); $('n_photo').style.opacity = a; $('n_photo').style.transform = `scale(${0.8 + 0.2 * a})`
+    $('a1').style.opacity = easeOut(seg(t, B.b3.start + 0.3, B.b3.start + 0.8)); $('a1').style.transform = `scaleX(${easeOut(seg(t, B.b3.start + 0.3, B.b3.start + 0.8))})`
+    const n = easeOut(seg(t, B.b3.start + 0.6, B.b3.start + 1.2)); $('n_net').style.opacity = n; $('n_net').style.transform = `scale(${0.85 + 0.15 * n})`
+    for (const id of ['a2', 'a3']) { $(id).style.opacity = easeOut(seg(t, B.b3.start + 1.1, B.b3.start + 1.6)) }
+    $('a2').style.transform = `rotate(-18deg) scaleX(${easeOut(seg(t, B.b3.start + 1.1, B.b3.start + 1.6))})`; $('a3').style.transform = `rotate(18deg) scaleX(${easeOut(seg(t, B.b3.start + 1.1, B.b3.start + 1.6))})`
+    for (const [id, d] of [['n_h1', 1.5], ['n_h2', 1.8]]) { const q = easeOut(seg(t, B.b3.start + d, B.b3.start + d + 0.5)); $(id).style.opacity = q; $(id).style.transform = `translateX(${(1 - q) * 40}px)` }
+    pop('s_cpu', Q.b3['Pure suffering'] - 0.1, { rot: 3 })
+    typeInto('c3t', CODE3, t, Q.b3['Random backgrounds'] - 0.3, 40)
+    $('c3').style.opacity = ease(seg(t, Q.b3['Random backgrounds'] - 0.5, Q.b3['Random backgrounds'])); $('c3').style.transform = `translateY(${(1 - ease(seg(t, Q.b3['Random backgrounds'] - 0.5, Q.b3['Random backgrounds']))) * 30}px)`
+    const nb = easeOut(seg(t, Q.b3['not-a-plant'] - 0.2, Q.b3['not-a-plant'] + 0.5)); $('no_ban').style.opacity = nb; $('no_ban').style.transform = `scale(${0.85 + 0.15 * nb})`
+    $('ban2').style.opacity = ease(seg(t, Q.b3['not-a-plant'] + 0.9, Q.b3['not-a-plant'] + 1.4)) }
+  // b4
+  { const g = easeOut(seg(t, Q.b4.ONNX, Q.b4.ONNX + 0.9)), g2 = easeOut(seg(t, Q.b4.Int8, Q.b4.Int8 + 0.9))
+    $('bar1').style.height = `${g * 300}px`; $('bar2').style.height = `${g2 * 100}px`
+    $('v1').style.bottom = `${290 + g * 300 + 14}px`; $('v1').style.top = 'auto'; $('v2').style.bottom = `${290 + g2 * 100 + 14}px`; $('v2').style.top = 'auto'
+    $('v1').style.opacity = g; $('v2').style.opacity = g2
+    const a = easeOut(seg(t, Q.b4.ONNX + 0.6, Q.b4.ONNX + 1.2)); $('acc').style.opacity = a
+    $('acc8').style.opacity = ease(seg(t, Q.b4['point nine'] - 0.15, Q.b4['point nine'] + 0.15))
+    pop('s_rng', Q.b4['random number'] + 0.15, { rot: -4 })
+    typeInto('c4t', CODE4, t, B.b4.start + 0.3, 55)
+    $('c4').style.opacity = ease(seg(t, B.b4.start + 0.2, B.b4.start + 0.7))
+    pop('s_ship', Q.b4['Shipped float32'], { y: 18 }) }
+  // b5
+  for (const [id, k] of [['p1', 'Prices'], ['p2', 'Rain'], ['p3', 'Soil']]) { const q = easeOut(seg(t, Q.b5[k] - 0.1, Q.b5[k] + 0.5)); $(id).style.opacity = q; $(id).style.transform = `translateY(${(1 - q) * 60}px)` }
+  pop('s_srv', Q.b5['No servers'] + 0.1, { rot: -2 })
+  // b6
+  { const q = easeOut(seg(t, Q.b6.browser - 0.1, Q.b6.browser + 0.5)); $('browser').style.opacity = q; $('browser').style.transform = `translateY(${(1 - q) * 40}px)`
+    typeInto('c6t', CODE6, t, Q.b6['service worker'] - 0.1, 42); $('c6').style.opacity = ease(seg(t, Q.b6['service worker'] - 0.3, Q.b6['service worker']))
+    const pl = easeOut(seg(t, Q.b6.Airplane - 0.15, Q.b6.Airplane + 0.4)); $('plane').style.opacity = pl
+    const k = ease(seg(t, Q.b6.Airplane + 0.3, Q.b6.Airplane + 0.6)); $('knob').style.left = `${4 + k * 36}px`; $('tog').style.background = k > 0.5 ? '#5be49b' : '#2a3544'
+    const h = easeOut(seg(t, Q.b6['Real-world'] - 0.2, Q.b6['Real-world'] + 0.5)); $('honest').style.opacity = h; $('honest').style.transform = `scale(${0.9 + 0.1 * h})` }
+  // b7
+  { const s = Q.b7.Smaller; const l = easeOut(seg(t, s - 0.2, s + 0.5)); $('lg').style.opacity = l; $('lg').style.transform = `scale(${0.8 + 0.2 * l})`
+    const a = easeOut(seg(t, s, s + 0.5)); $('o1').style.opacity = a; $('o1').style.transform = `translateY(${(1 - a) * 30}px)`
+    pop('o2', Q.b7['Ship it'] - 0.05, { y: 30, d: 0.5 }) }
+}
+window.render = render; window.setTiming = setTiming
+</script></body></html>

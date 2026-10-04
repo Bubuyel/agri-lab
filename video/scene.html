@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Agri Lab launch film</title>
+<style>
+@font-face { font-family: Outfit; src: url(fonts/outfit-latin-wght-normal.woff2); font-weight: 100 900; }
+@font-face { font-family: Inter; src: url(fonts/inter-latin-wght-normal.woff2); font-weight: 100 900; }
+:root { --green: #5be49b; --green-d: #1f9d5c; --ink: #0a0a0b; --paper: #f4f4f6; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; background: #000; overflow: hidden; font-family: Inter, sans-serif; }
+#stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+.layer { position: absolute; inset: 0; opacity: 0; }
+#light { background: radial-gradient(120% 90% at 70% 40%, #ffffff 0%, var(--paper) 55%, #e9eaee 100%); }
+#dark { background: radial-gradient(90% 80% at 50% 45%, #121413 0%, #050505 70%); }
+.center { display: grid; place-items: center; text-align: center; }
+.word { font-family: Outfit; font-weight: 500; letter-spacing: -0.035em; } .word b { font-weight: 700; }
+svg.mark .flask, svg.mark .wave { fill: none; stroke: currentColor; stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; }
+svg.mark .leaf, svg.mark .spark { fill: var(--green); stroke: none; }
+.big { font-family: Outfit; font-weight: 600; letter-spacing: -0.04em; line-height: 1.02; }
+.sub { font-family: Inter; font-weight: 500; color: #6b6f76; letter-spacing: -0.01em; }
+.abs { position: absolute; }
+/* problem scene */
+#leafbg { position: absolute; inset: -4%; background: url(leaf.jpg) center/cover; filter: blur(16px) saturate(1.0) brightness(.7); }
+.q { position: absolute; left: 0; right: 0; text-align: center; color: #fff; }
+.chipw { display: flex; align-items: center; gap: 28px; justify-content: center; color: #fff; }
+.chipw .ico { width: 108px; height: 108px; border-radius: 32px; background: rgba(91,228,155,.14); border: 2px solid rgba(91,228,155,.35); display: grid; place-items: center; }
+.chipw svg { width: 58px; height: 58px; fill: none; stroke: var(--green); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+/* phone */
+#phone { position: absolute; width: 418px; height: 872px; left: 0; top: 0; transform-origin: 0 0; border-radius: 68px; background: #0c0c0d; padding: 14px; box-shadow: 0 60px 120px rgba(10,20,15,.28), 0 0 0 2px #2a2b2e inset, 0 0 0 1px #000; }
+#screen { position: relative; width: 390px; height: 844px; border-radius: 54px; overflow: hidden; background: #f4f4f6; }
+#screen img { position: absolute; left: 10.5px; top: 46px; width: 369px; height: 798px; object-fit: fill; opacity: 0; border-radius: 0 0 0 0; }
+#island { position: absolute; left: 50%; top: 22px; width: 118px; height: 34px; margin-left: -59px; background: #000; border-radius: 20px; z-index: 5; }
+#cam { position: absolute; inset: 0; background: #f4f4f6; opacity: 0; }
+#cam .title { position: absolute; left: 22px; top: 62px; font: 600 38px Outfit; letter-spacing: -0.03em; color: #111; }
+#cam .vf { position: absolute; left: 20px; top: 128px; width: 350px; height: 350px; border-radius: 34px; overflow: hidden; background: #000 url(leaf.jpg) center/cover; outline: 3px solid transparent; }
+#cam .vf.ok { outline-color: var(--green); }
+#cam .corner { position: absolute; width: 38px; height: 38px; border: 3.5px solid rgba(255,255,255,.9); border-radius: 12px; }
+#cam .tl { top: 22px; left: 22px; border-right: 0; border-bottom: 0; } #cam .tr { top: 22px; right: 22px; border-left: 0; border-bottom: 0; }
+#cam .bl { bottom: 22px; left: 22px; border-right: 0; border-top: 0; } #cam .br { bottom: 22px; right: 22px; border-left: 0; border-top: 0; }
+#cam .hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); padding: 8px 14px; border-radius: 999px; background: rgba(20,20,20,.62); color: #fff; font: 600 14px Inter; white-space: nowrap; backdrop-filter: blur(10px); }
+#cam .hint.ok { background: var(--green); color: #06260f; }
+#cam .shutter { position: absolute; left: 50%; top: 548px; width: 80px; height: 80px; margin-left: -40px; border-radius: 50%; border: 4px solid #111; display: grid; place-items: center; }
+#cam .shutter i { display: block; width: 60px; height: 60px; border-radius: 50%; background: var(--green); }
+#ana { position: absolute; inset: 0; background: #f4f4f6; opacity: 0; }
+#ana .title { position: absolute; left: 22px; top: 62px; font: 600 38px Outfit; letter-spacing: -0.03em; color: #111; }
+#ana .vf2 { position: absolute; left: 20px; top: 128px; width: 350px; height: 350px; border-radius: 34px; overflow: hidden; background: #000 url(leaf.jpg) center/cover; }
+#ana .sweep { position: absolute; left: 0; right: 0; height: 90px; top: 0; background: linear-gradient(180deg, rgba(91,228,155,0), rgba(91,228,155,.55)); border-bottom: 3px solid #5be49b; }
+#ana .pillA { position: absolute; left: 50%; top: 508px; transform: translateX(-50%); padding: 12px 22px; border-radius: 999px; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,.08); font: 600 18px Inter; color: #15161a; white-space: nowrap; }
+#ripple { position: absolute; left: 195px; top: 588px; width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; background: rgba(91,228,155,.45); opacity: 0; z-index: 3; }
+#flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 4; }
+#pill { position: absolute; left: 50%; top: 14px; z-index: 6; transform: translateX(-50%); }
+#plane { position: absolute; right: 90px; top: 70px; display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-radius: 999px; background: #0c0c0d; color: #fff; font: 600 22px Inter; opacity: 0; }
+#plane svg { width: 26px; height: 26px; fill: #5be49b; }
+.langpills { position: absolute; display: flex; gap: 14px; opacity: 0; }
+.langpills span { padding: 12px 22px; border-radius: 999px; background: #fff; border: 1.5px solid #dfe1e6; font: 600 24px Inter; color: #15161a; box-shadow: 0 6px 20px rgba(0,0,0,.05); }
+.models { position: absolute; inset: 0; opacity: 0; }
+.mchip { position: absolute; width: 360px; padding: 34px 36px; border-radius: 40px; background: #fff; box-shadow: 0 30px 80px rgba(10,20,15,.10); border: 1.5px solid #e6e8ec; }
+.mchip svg { width: 56px; height: 56px; fill: none; stroke: var(--green-d); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.mchip b { display: block; margin-top: 18px; font: 600 34px Outfit; letter-spacing: -0.03em; color: #111; } .mchip span { display: block; margin-top: 6px; font: 500 21px Inter; color: #70747c; }
+.nonet { position: absolute; left: 0; right: 0; text-align: center; color: #0a0a0b; opacity: 0; }
+</style></head>
+<body>
+<div id="stage">
+  <div class="layer" id="light"></div>
+  <div class="layer" id="dark"></div>
+
+  <!-- A / E: logo -->
+  <div class="layer" id="logo" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <svg class="mark" id="mk" viewBox="0 0 100 100" width="300" height="300" style="color:#fff">
+      <g><path class="leaf l1" d="M47.5 33.5C39 33.5 34.2 27.4 35.2 19.6C42.4 19.6 47.4 24.8 47.5 33.5Z"/><path class="leaf l2" d="M52.5 33.5C51.6 22 59.6 13.6 74.5 11.4C75.6 25.6 66.8 33.6 52.5 33.5Z"/></g>
+      <path class="flask" d="M40.5 38V52L24.5 79.5C19.5 88.5 25 92 31 92H69C75 92 80.5 88.5 75.5 79.5L59.5 52V38M35.5 38H64.5"/>
+      <path class="wave" d="M29.5 80.5Q39 74.5 50 79.5T70.5 80.5"/>
+      <path class="spark" d="M50 62L52.7 67.3L58 70L52.7 72.7L50 78L47.3 72.7L42 70L47.3 67.3Z"/>
+      <path class="spark s2" d="M61.5 61.5L62.5 63.6L64.6 64.6L62.5 65.6L61.5 67.7L60.5 65.6L58.4 64.6L60.5 63.6Z"/>
+    </svg>
+    <div class="word" id="wm" style="font-size:132px;color:#fff;margin-top:22px">Agri <b>Lab</b></div>
+    <div id="tagline" class="sub" style="font-size:44px;color:#c9ccd1;margin-top:26px;letter-spacing:-0.02em">Expert help, in every farmer’s pocket.</div>
+    <div id="offline" class="sub" style="font-size:30px;color:#5be49b;margin-top:34px;letter-spacing:.14em;text-transform:uppercase;font-weight:600">Works offline</div>
+  </div>
+
+  <!-- B: problem -->
+  <div class="layer" id="problem">
+    <div id="leafbg"></div>
+    <div class="abs" style="inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 40%,rgba(0,0,0,.7))"></div>
+    <div class="q big" id="p1" style="top:360px;font-size:104px">No internet.</div>
+    <div class="q big" id="p2" style="top:500px;font-size:104px;color:#9aa0a6">No expert.</div>
+    <div class="q" id="nosig" style="top:430px;display:flex;justify-content:center;align-items:flex-end;gap:12px;opacity:0"></div>
+    <div id="four" class="abs" style="left:0;right:0;top:420px;height:260px">
+      <div class="chipw abs" id="f1" style="left:0;right:0"><div class="ico"><svg viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 14-14 0 9-6 14-14 14Zm0 0c2-5 5-8 9-10"/></svg></div><div class="big" style="font-size:120px">Disease.</div></div>
+      <div class="chipw abs" id="f2" style="left:0;right:0"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 8-9M15 5h5v5"/></svg></div><div class="big" style="font-size:120px">Prices.</div></div>
+      <div class="chipw abs" id="f3" style="left:0;right:0"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 15a4 4 0 1 1 1-7.9A5 5 0 0 1 18 9a3.5 3.5 0 0 1 0 7H7ZM9 19l-1 2M13 19l-1 2M17 19l-1 2"/></svg></div><div class="big" style="font-size:120px">Rain.</div></div>
+      <div class="chipw abs" id="f4" style="left:0;right:0"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5ZM3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></div><div class="big" style="font-size:120px">Soil.</div></div>
+    </div>
+    <div class="q big" id="p3" style="top:800px;font-size:60px;color:#c9ccd1;font-weight:500">A wrong guess costs a whole season.</div>
+  </div>
+
+  <!-- C: product -->
+  <div class="layer" id="product">
+    <div id="cap" class="abs" style="left:150px;top:380px;width:760px">
+      <div class="big" id="capT" style="font-size:112px;color:#0a0a0b"></div>
+      <div class="sub" id="capS" style="font-size:42px;margin-top:26px"></div>
+    </div>
+    <div id="plane"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z"/></svg>Airplane mode</div>
+    <div class="langpills" id="lp"><span>Ikirundi</span><span>Kiswahili</span><span>Français</span><span>Español</span><span>Yorùbá</span></div>
+    <div id="phone"><div id="island"></div><div id="screen">
+      <img id="i_scanres" src="shots/en-result.png"><img id="i_rn" src="shots/rn-result.png"><img id="i_prices" src="shots/en-price-detail.png"><img id="i_rain" src="shots/en-rain.png"><img id="i_land" src="shots/en-land.png"><img id="i_home" src="shots/en-home.png"><img id="i_sw" src="shots/sw-result.png"><img id="i_yo" src="shots/yo-result.png"><img id="i_am" src="shots/am-result.png">
+      <div id="cam"><div class="title">Check my plant</div><div class="vf" id="vf"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="hint" id="hint">Point at a leaf · 14%</div></div><div class="shutter"><i></i></div></div>
+      <div id="ana"><div class="title">Check my plant</div><div class="vf2"><div class="sweep"></div></div><div class="pillA" id="pillA">Checking your plant…</div></div>
+      <div id="ripple"></div><div id="flash"></div>
+    </div></div>
+    <div class="models" id="models">
+      <div class="mchip" id="m1" style="left:180px;top:250px"><svg viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 14-14 0 9-6 14-14 14Zm0 0c2-5 5-8 9-10"/></svg><b>Plant doctor</b><span>Crop and disease from a photo</span></div>
+      <div class="mchip" id="m2" style="left:580px;top:250px"><svg viewBox="0 0 24 24"><path d="M3 17l5-6 4 3 8-9M15 5h5v5"/></svg><b>Price forecast</b><span>Months ahead, best time to sell</span></div>
+      <div class="mchip" id="m3" style="left:980px;top:250px"><svg viewBox="0 0 24 24"><path d="M7 15a4 4 0 1 1 1-7.9A5 5 0 0 1 18 9a3.5 3.5 0 0 1 0 7H7ZM9 19l-1 2M13 19l-1 2M17 19l-1 2"/></svg><b>Rain outlook</b><span>Seasons and the days ahead</span></div>
+      <div class="mchip" id="m4" style="left:1380px;top:250px"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5ZM3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg><b>Land advisor</b><span>Soil, fertiliser, what to plant</span></div>
+      <div class="big center" id="mbig" style="position:absolute;left:0;right:0;top:640px;font-size:86px;color:#0a0a0b;display:block;text-align:center">A few megabytes. <span style="color:var(--green-d)">All on your phone.</span></div>
+    </div>
+    <div class="nonet" id="nn1" style="top:300px"><div class="big" style="font-size:150px">No internet.</div></div>
+    <div class="nonet" id="nn2" style="top:470px"><div class="big" style="font-size:150px">No account.</div></div>
+    <div class="nonet" id="nn3" style="top:640px"><div class="big" style="font-size:96px;color:var(--green-d)">Nothing leaves your phone.</div></div>
+  </div>
+</div>
+
+<script>
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x))
+const seg = (t, a, b) => clamp((t - a) / (b - a))
+const ease = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2)
+const easeOut = (p) => 1 - Math.pow(1 - p, 3)
+const $ = (id) => document.getElementById(id)
+const op = (id, v) => { $(id).style.opacity = v }
+const bump = (t, a, b) => ease(seg(t, a, a + 0.5)) * (1 - ease(seg(t, b - 0.5, b)))      // fades in at a, out at b
+// cue times (seconds). timing.json (from the voice-over alignment) overrides these defaults.
+let C = { logoOut: 5.0, p_in: 5.0, no_expert: 8.6, nosig: 6.4, four: 11.6, f2: 13.0, f3: 14.6, f4: 15.7, wrong: 17.3, p_out: 20.0,
+          meet: 20.5, lang: 27.3, scan: 21.6, price: 28.5, rain: 33.1, land: 35.9, models: 38.8, nonet: 43.9, end: 47.8, tag: 51.0, total: 60 }
+function setCues(o) { Object.assign(C, o) }
+
+const MK = ['.l1', '.l2', '.flask', '.wave', '.spark']
+function drawLogo(p) {   // p 0..1
+  const f = document.querySelector('#mk .flask'), w = document.querySelector('#mk .wave')
+  for (const el of [f, w]) { const L = el.getTotalLength(); el.style.strokeDasharray = L; el.style.strokeDashoffset = L * (1 - ease(seg(p, 0, 0.7))) }
+  document.querySelectorAll('#mk .leaf').forEach((l, i) => { const q = easeOut(seg(p, 0.55 + i * 0.1, 0.95)); l.style.opacity = q; l.style.transformOrigin = '50px 34px'; l.style.transform = `scale(${0.6 + 0.4 * q}) rotate(${(1 - q) * (i ? 18 : -18)}deg)` })
+  document.querySelectorAll('#mk .spark').forEach((s, i) => { const q = easeOut(seg(p, 0.7 + i * 0.1, 1)); s.style.opacity = q; s.style.transformOrigin = i ? '61.5px 64.6px' : '50px 70px'; s.style.transform = `scale(${q})` })
+}
+function placePhone(x, y, s, o) { const el = $('phone'); el.style.transform = `translate(${x}px, ${y}px) scale(${s})`; el.style.opacity = o }
+function showScreen(name, o = 1) { for (const k of ['scanres', 'rn', 'sw', 'yo', 'am', 'prices', 'rain', 'land', 'home']) $('i_' + k).style.opacity = k === name ? o : 0 }
+
+function render(t) {
+  const L = { light: 0, dark: 0 }
+  // ----- backgrounds
+  const toLight = ease(seg(t, C.p_out - 0.2, C.p_out + 0.6)) * (1 - ease(seg(t, C.end - 0.9, C.end + 0.5)))
+  op('light', toLight); op('dark', 1 - toLight)
+
+  // ----- logo (open and close)
+  const open = t < C.p_in + 0.2, close = t >= C.end - 0.2
+  let lo = 0, lp = 0
+  if (open) { lp = seg(t, 0.3, 2.4); lo = ease(seg(t, 0, 0.4)) * (1 - ease(seg(t, C.logoOut - 0.7, C.logoOut))) }
+  if (close) { lp = seg(t, C.end + 0.2, C.end + 2.2); lo = ease(seg(t, C.end - 0.2, C.end + 0.4)) * (1 - ease(seg(t, C.total - 0.9, C.total))) }
+  op('logo', lo); drawLogo(lp)
+  const wmIn = open ? ease(seg(t, 2.3, 3.2)) : ease(seg(t, C.end + 1.6, C.end + 2.4))
+  $('wm').style.opacity = wmIn; $('wm').style.transform = `translateY(${(1 - wmIn) * 24}px)`
+  const tg = close ? ease(seg(t, C.tag - 0.2, C.tag + 0.7)) : 0
+  $('tagline').style.opacity = tg; $('tagline').style.transform = `translateY(${(1 - tg) * 18}px)`
+  $('offline').style.opacity = close ? ease(seg(t, C.tag + 4.6, C.tag + 5.4)) : 0
+  const mk = $('mk'); mk.style.transform = `translateY(${open ? 0 : 0}px) scale(${1 + 0.02 * Math.sin(t)})`
+
+  // ----- problem
+  const pin = ease(seg(t, C.p_in, C.p_in + 0.9)) * (1 - ease(seg(t, C.p_out - 0.5, C.p_out)))
+  op('problem', pin)
+  const k = seg(t, C.p_in, C.p_out)
+  $('leafbg').style.transform = `scale(${1.04 + 0.12 * k}) translate(${-k * 30}px, ${-k * 12}px)`
+  $('leafbg').style.opacity = 1 - ease(seg(t, C.four - 0.3, C.four + 0.5)) * 0.85
+  const slide = (id, a, b, y0 = 34) => { const o = bump(t, a, b); const el = $(id); el.style.opacity = o; el.style.transform = `translateY(${(1 - ease(seg(t, a, a + 0.7))) * y0}px)` }
+  slide('p1', C.p_in + 0.6, C.no_expert + 0.6); slide('p2', C.no_expert, C.four - 0.2)
+  $('p1').style.top = '400px'; $('p2').style.top = '520px'
+  slide('f1', C.four, C.f2 + 0.3, 40); slide('f2', C.f2, C.f3 + 0.3, 40); slide('f3', C.f3, C.f4 + 0.3, 40)
+  { const o = ease(seg(t, C.f4, C.f4 + 0.6)) * (1 - ease(seg(t, C.wrong - 0.4, C.wrong))); $('f4').style.opacity = o; $('f4').style.transform = `translateY(${(1 - ease(seg(t, C.f4, C.f4 + 0.7))) * 40}px)` }
+  { const o = ease(seg(t, C.wrong, C.wrong + 0.8)) * (1 - ease(seg(t, C.p_out - 0.5, C.p_out))); $('p3').style.opacity = o; $('p3').style.transform = `translateY(${(1 - ease(seg(t, C.wrong, C.wrong + 0.8))) * 22}px)` }
+  for (const id of ['f1', 'f2', 'f3', 'f4']) { const e = $(id); e.style.top = '70px' }
+
+  // ----- product
+  const prodOn = ease(seg(t, C.meet, C.meet + 0.8)) * (1 - ease(seg(t, C.end - 0.9, C.end - 0.1)))
+  op('product', prodOn)
+  op('plane', ease(seg(t, C.meet + 0.5, C.meet + 1.1)) * (1 - ease(seg(t, C.end - 1.2, C.end - 0.6))))
+  $('plane').style.transform = `translateY(${(1 - ease(seg(t, C.meet + 0.5, C.meet + 1.1))) * -20}px)`
+  // caption + phone choreography
+  const S = [
+    ['scan', C.scan, C.price, 'Point. Know.', 'The plant and the disease, in your language.'],
+    ['price', C.price, C.rain, 'Know the price.', 'Forecast, best month to sell, nearby markets.'],
+    ['rain', C.rain, C.land, 'Know the rain.', 'Chance of rain, day by day.'],
+    ['land', C.land, C.models, 'Know your soil.', 'What it needs. What to plant.'],
+  ]
+  let cur = null
+  for (const s of S) if (t >= s[1] && t < s[2]) cur = s
+  const capOn = cur ? ease(seg(t, cur[1] + 0.1, cur[1] + 0.7)) * (1 - ease(seg(t, cur[2] - 0.5, cur[2] - 0.05))) : 0
+  if (cur) { $('capT').textContent = cur[3]; $('capS').textContent = cur[4] }
+  if (cur && cur[0] === 'scan' && t - C.scan >= Math.max(4.2, C.lang - C.scan - 0.15)) { $('capT').textContent = ['Ikirundi', 'Kiswahili', 'Yorùbá', 'አማርኛ'][Math.min(3, Math.floor((t - C.scan - Math.max(4.2, C.lang - C.scan - 0.15)) / Math.min(0.9, (C.price - C.scan - Math.max(4.2, C.lang - C.scan - 0.15) - 0.15) / 4)))]; $('capS').textContent = 'The same diagnosis, in your language.' }
+  $('cap').style.opacity = capOn; $('cap').style.transform = `translateY(${(1 - capOn) * 26}px)`
+  // phone: enters from below at meet, sits right; leaves down at models
+  const pin2 = easeOut(seg(t, C.meet + 0.2, C.meet + 1.5)), pout = ease(seg(t, C.models - 0.3, C.models + 0.7)), pback = ease(seg(t, C.nonet + 0.2, C.nonet + 1.0))
+  const s0 = 1.1, px = 1110 + 12 * Math.sin(t * 0.7), py = 60 + (1 - pin2) * 700 + pout * 1300
+  placePhone(px, py, s0, prodOn > 0.01 ? 1 : 0)
+  const rotY = 0
+  // screen content
+  const inScan = t >= C.scan && t < C.price
+  $('cam').style.opacity = 0; $('flash').style.opacity = 0; $('ana').style.opacity = 0; $('ripple').style.opacity = 0; showScreen('home', 1)
+  $('lp').style.opacity = 0
+  const LANGS = [['rn', 'Ikirundi'], ['sw', 'Kiswahili'], ['yo', 'Yorùbá'], ['am', 'አማርኛ']]
+  if (inScan) {
+    const a = t - C.scan
+    const tL = Math.max(4.2, C.lang - C.scan - 0.15)                       // the languages start on "...the result in your local language"
+    const step = Math.min(0.9, (C.price - C.scan - tL - 0.15) / 4)
+    if (a < 2.5) {   // live camera: plant found
+      showScreen('home', 0); $('cam').style.opacity = 1
+      const ok = a > 1.3
+      $('vf').classList.toggle('ok', ok)
+      const f = ease(seg(a, 1.3, 1.9)) * 10
+      document.querySelector('#vf .tl').style.transform = `translate(${f}px, ${f}px)`; document.querySelector('#vf .tr').style.transform = `translate(${-f}px, ${f}px)`
+      document.querySelector('#vf .bl').style.transform = `translate(${f}px, ${-f}px)`; document.querySelector('#vf .br').style.transform = `translate(${-f}px, ${-f}px)`
+      document.querySelectorAll('#vf .corner').forEach((c) => (c.style.borderColor = ok ? '#5be49b' : 'rgba(255,255,255,.9)'))
+      const pct = ok ? 93 : Math.round(12 + a * 6 + 3 * Math.sin(a * 5))
+      $('hint').className = 'hint' + (ok ? ' ok' : ''); $('hint').textContent = ok ? `Plant found · ${pct}%` : `Point at a leaf · ${pct}%`
+      $('vf').style.backgroundSize = `${112 + a * 4}%`
+      // finger tap on the shutter
+      const rp = seg(a, 2.0, 2.45); $('ripple').style.opacity = rp > 0 && rp < 1 ? 0.9 * (1 - rp) : 0; $('ripple').style.transform = `scale(${0.4 + rp * 1.3})`
+      document.querySelector('#cam .shutter').style.transform = `scale(${1 - 0.1 * Math.sin(Math.PI * clamp((a - 2.0) / 0.45))})`
+    }
+    if (a >= 2.45 && a < 3.5) {   // the app is looking at the photo
+      showScreen('home', 0)
+      $('ana').style.opacity = 1
+      const q = seg(a, 2.5, 3.4); document.querySelector('#ana .sweep').style.top = `${-90 + q * 440}px`
+      $('pillA').textContent = q < 0.6 ? 'Checking your plant…' : 'Reading the leaf…'
+    }
+    if (a >= 2.45) $('flash').style.opacity = Math.max(0, 0.7 * (1 - seg(a, 2.45, 2.75)))
+    if (a >= 3.3) { const el = $('i_scanres'); el.style.opacity = ease(seg(a, 3.3, 3.8)); el.style.transform = `translateY(${(1 - easeOut(seg(a, 3.35, 4.0))) * 60}px)`; $('ana').style.opacity = 1 - ease(seg(a, 3.3, 3.6)) }
+    // the same diagnosis, in the farmer's own language: Ikirundi, Kiswahili, Yorùbá, አማርኛ
+    const t0 = tL
+    LANGS.forEach(([k], n) => {
+      const st = t0 + n * step, el = $('i_' + k)
+      const inn = ease(seg(a, st, st + 0.3)), out = n === LANGS.length - 1 ? 0 : ease(seg(a, st + step - 0.05, st + step + 0.25))
+      el.style.opacity = inn * (1 - out)
+    })
+    if (a >= t0) $('i_scanres').style.opacity = 1 - ease(seg(a, t0, t0 + 0.3))
+  }
+  if (t >= C.price && t < C.rain) { showScreen('prices', 1); const a = t - C.price; $('i_prices').style.transform = `scale(${1 + 0.02 * a})`; $('i_prices').style.opacity = ease(seg(a, 0, 0.5)) }
+  else $('i_prices').style.transform = ''
+  if (t >= C.rain && t < C.land) { showScreen('rain', 1); $('i_rain').style.opacity = ease(seg(t, C.rain, C.rain + 0.5)) }
+  if (t >= C.land && t < C.models) { showScreen('land', 1); $('i_land').style.opacity = ease(seg(t, C.land, C.land + 0.5)) }
+  if (t >= C.models) { showScreen('home', 1) }
+  $('i_home').style.transform = ''
+  // four models + words
+  op('models', bump(t, C.models + 0.2, C.nonet))
+  ;['m1', 'm2', 'm3', 'm4'].forEach((id, i) => { const a = C.models + 0.5 + i * 0.45; const q = easeOut(seg(t, a, a + 0.7)); $(id).style.opacity = q; $(id).style.transform = `translateY(${(1 - q) * 50}px)` })
+  $('mbig').style.opacity = ease(seg(t, C.models + 2.4, C.models + 3.2)); $('mbig').style.transform = `translateY(${(1 - ease(seg(t, C.models + 2.4, C.models + 3.2))) * 24}px)`
+  const nn = [C.nonet, C.nonet + 1.1, C.nonet + 2.1]
+  ;['nn1', 'nn2', 'nn3'].forEach((id, i) => { const q = ease(seg(t, nn[i], nn[i] + 0.7)) * (1 - ease(seg(t, C.end - 1.2, C.end - 0.5))); $(id).style.opacity = q; $(id).style.transform = `translateY(${(1 - ease(seg(t, nn[i], nn[i] + 0.7))) * 30}px)` })
+}
+window.render = render; window.setCues = setCues; window.getCues = () => C
+render(0)
+</script></body></html>
