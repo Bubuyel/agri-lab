@@ -108,6 +108,19 @@ html, body { width: 1920px; height: 1080px; background: var(--bg); overflow: hid
   <div class="sticker" id="s_srv" style="left:560px;top:880px;background:#1c1014;color:var(--r);border:2px solid var(--r);font-size:46px;transform:rotate(-2deg)">🖥️ servers: 0</div>
 </div>
 
+<!-- b5b camera + languages -->
+<div class="beat" id="b5b">
+  <div class="abs h" style="left:90px;top:150px;font-size:76px">Camera gate <span style="color:var(--dim);font-weight:500;font-size:44px">+</span> <span style="color:var(--g)">16 languages</span></div>
+  <div class="card abs" id="cg" style="left:90px;top:290px;width:760px;height:640px;padding:36px">
+    <div style="position:relative;width:420px;height:420px;margin:10px auto 0;border-radius:34px;overflow:hidden;background:#000 url(leaf.jpg) center/cover;outline:3px solid var(--g)">
+      <i style="position:absolute;top:32px;left:32px;width:44px;height:44px;border:4px solid var(--g);border-right:0;border-bottom:0;border-radius:12px"></i><i style="position:absolute;top:32px;right:32px;width:44px;height:44px;border:4px solid var(--g);border-left:0;border-bottom:0;border-radius:12px"></i>
+      <i style="position:absolute;bottom:32px;left:32px;width:44px;height:44px;border:4px solid var(--g);border-right:0;border-top:0;border-radius:12px"></i><i style="position:absolute;bottom:32px;right:32px;width:44px;height:44px;border:4px solid var(--g);border-left:0;border-top:0;border-radius:12px"></i>
+      <div id="pf" style="position:absolute;left:50%;bottom:22px;transform:translateX(-50%);padding:10px 18px;border-radius:999px;background:var(--g);color:#06260f;font:700 24px Inter;white-space:nowrap">Plant found · 93%</div></div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-top:26px"><div id="shut" style="width:78px;height:78px;border-radius:50%;border:4px solid #fff;display:grid;place-items:center"><i style="display:block;width:58px;height:58px;border-radius:50%;background:var(--g)"></i></div><span class="mono" style="font-size:30px;color:var(--dim)">4 ms / frame</span></div></div>
+  <div class="abs" id="langs" style="left:930px;top:290px;width:900px;display:flex;flex-wrap:wrap;gap:16px"></div>
+  <div class="chip abs" id="nllb" style="left:930px;top:850px;background:#122a20;border-color:var(--g);color:var(--g);font-size:30px">NLLB-200 · translated once, at build time</div>
+</div>
+
 <!-- b6 offline -->
 <div class="beat" id="b6">
   <div class="abs h" style="left:90px;top:150px;font-size:76px">Offline <span style="color:var(--g)">by design</span></div>
@@ -160,13 +173,15 @@ const CODE2 = 'import urllib.request\n\nfor name, url in DATASETS.items():\n    
 const CODE3 = 'leaf = paste(leaf, random_background())  # no lab-table cheating\nclasses += ["not_plant", "banana", "cassava"]'
 const CODE4 = 'torch.onnx.export(model, x, "crop_disease_fp32.onnx")'
 const CODE6 = "self.addEventListener('fetch', (e) =>\n  e.respondWith(caches.match(e.request)))"
-const STEPS = { b1: '', b2: '01 · DATA', b3: '02 · TRAIN', b4: '03 · SHRINK', b5: '04 · THE OTHER MODELS', b6: '05 · OFFLINE', b7: '' }
+const STEPS = { b1: '', b2: '01 · DATA', b3: '02 · TRAIN', b4: '03 · SHRINK', b5: '04 · THE OTHER MODELS', b5b: '05 · CAMERA + LANGUAGES', b6: '06 · OFFLINE', b7: '' }
 const CARDS = [['PlantVillage', 'leaf photos', 'b2', 'PlantVillage'], ['PlantDoc', 'field photos', 'b2', 'PlantDoc'], ['WFP', 'market prices', 'b2', 'WFP'], ['CHIRPS', 'satellite rain', 'b2', 'CHIRPS'], ['iSDAsoil', 'soil maps', 'b2', 'iSDA']]
 $('d_cards').innerHTML = CARDS.map((c, i) => `<div class="card" id="dc${i}" style="display:flex;align-items:center;justify-content:space-between;padding:0 34px;height:96px;margin-bottom:22px"><span class="h" style="font-size:44px">${c[0]}</span><span style="font:600 28px Inter;color:var(--dim)">${c[1]}</span></div>`).join('')
 
+const LANGS16 = ['English', 'Français', 'Español', 'Português', 'العربية', 'हिन्दी', 'Kiswahili', 'Ikirundi', 'Kinyarwanda', 'Soomaali', 'Yorùbá', 'Hausa', 'Igbo', 'አማርኛ', 'Afaan Oromoo', 'ትግርኛ']
+$('langs').innerHTML = LANGS16.map((l, i) => `<span class="chip" id="lg${i}" style="font-size:30px">${l}</span>`).join('')
 function render(t) {
   window.__t = t
-  const B = T.beats, Q = T.cues, order = ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7']
+  const B = T.beats, Q = T.cues, order = ['b1', 'b2', 'b3', 'b4', 'b5', 'b5b', 'b6', 'b7']
   $('prog').style.width = `${(t / T.total) * 100}%`
   let cur = 'b1'
   for (const b of order) if (t >= B[b].start - 0.25) cur = b
@@ -213,6 +228,12 @@ function render(t) {
   // b5
   for (const [id, k] of [['p1', 'Prices'], ['p2', 'Rain'], ['p3', 'Soil']]) { const q = easeOut(seg(t, Q.b5[k] - 0.1, Q.b5[k] + 0.5)); $(id).style.opacity = q; $(id).style.transform = `translateY(${(1 - q) * 60}px)` }
   pop('s_srv', Q.b5['No servers'] + 0.1, { rot: -2 })
+  // b5b
+  { const a = easeOut(seg(t, Q.b5b['Live camera'] - 0.1, Q.b5b['Live camera'] + 0.5)); $('cg').style.opacity = a; $('cg').style.transform = `translateY(${(1 - a) * 40}px)`
+    const k = ease(seg(t, Q.b5b['four milliseconds'] - 0.4, Q.b5b['four milliseconds'] + 0.3)); $('pf').style.opacity = k; $('shut').style.transform = `scale(${1 + 0.06 * Math.sin(t * 6) * k})`
+    const s0 = Q.b5b['Sixteen languages'] - 0.1
+    LANGS16.forEach((l, i) => { const q = easeOut(seg(t, s0 + i * 0.06, s0 + i * 0.06 + 0.35)); const el = $('lg' + i); el.style.opacity = q; el.style.transform = `translateY(${(1 - q) * 20}px)` })
+    $('nllb').style.opacity = easeOut(seg(t, s0 + 1.0, s0 + 1.5)) }
   // b6
   { const q = easeOut(seg(t, Q.b6.browser - 0.1, Q.b6.browser + 0.5)); $('browser').style.opacity = q; $('browser').style.transform = `translateY(${(1 - q) * 40}px)`
     typeInto('c6t', CODE6, t, Q.b6['service worker'] - 0.1, 42); $('c6').style.opacity = ease(seg(t, Q.b6['service worker'] - 0.3, Q.b6['service worker']))

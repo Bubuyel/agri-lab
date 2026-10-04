@@ -13,10 +13,10 @@ def add(path):
     inputs.extend(["-i", str(HERE / path)]); return len(inputs) // 2 - 1
 
 m = add(plan.get("music", "music.mp3"))
-chains.append(f"[{m}:a]atrim=0:{T},afade=t=in:st=0:d=2,afade=t=out:st={T-3.5}:d=3.5,volume=0.5[mus]")
+chains.append(f"[{m}:a]atrim=0:{T},afade=t=in:st=0:d=2,afade=t=out:st={T-3.5}:d=3.5,volume=0.36[mus]")
 for i, (path, at) in enumerate(plan["voice"]):
     k = add(path); ms = int(at * 1000)
-    chains.append(f"[{k}:a]adelay={ms}|{ms},volume=1.25[v{i}]"); vo_labels.append(f"[v{i}]")
+    chains.append(f"[{k}:a]adelay={ms}|{ms},acompressor=threshold=0.08:ratio=3.5:attack=4:release=90:makeup=2,volume=1.9[v{i}]"); vo_labels.append(f"[v{i}]")
 chains.append("".join(vo_labels) + f"amix=inputs={len(vo_labels)}:normalize=0,asplit=2[vo][vosc]")
 sfx_files = {}
 for j, (name, at, vol) in enumerate(plan["sfx"]):
@@ -25,8 +25,8 @@ for j, (name, at, vol) in enumerate(plan["sfx"]):
     ms = int(max(0, at) * 1000)
     chains.append(f"[{k}:a]adelay={ms}|{ms},volume={vol * 0.9:.2f}[s{j}]"); sfx_labels.append(f"[s{j}]")
 chains.append("".join(sfx_labels) + f"amix=inputs={len(sfx_labels)}:normalize=0[sfx]")
-chains.append("[mus][vosc]sidechaincompress=threshold=0.02:ratio=9:attack=25:release=500[duck]")
-chains.append(f"[duck][vo][sfx]amix=inputs=3:normalize=0,alimiter=limit=0.93,apad=whole_dur={T}[mix]")
+chains.append("[mus][vosc]sidechaincompress=threshold=0.015:ratio=12:attack=15:release=400[duck]")
+chains.append(f"[duck][vo][sfx]amix=inputs=3:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=7,alimiter=limit=0.93,apad=whole_dur={T}[mix]")
 
 audio = HERE / "audio_mix2.m4a"
 cmd = [FF, "-y", *inputs, "-filter_complex", ";".join(chains), "-map", "[mix]", "-t", str(T), "-c:a", "aac", "-b:a", "256k", str(audio)]
