@@ -1,6 +1,6 @@
 # Agri Lab: offline AI for smallholder farmers
 
-**Live app: https://agrilab-nu.vercel.app** (open it on a phone, add it to the home screen, then use it in airplane mode)
+**Live app: https://agri-lab.vercel.app** (open it on a phone, add it to the home screen, then use it in airplane mode)
 
 One phone app, **works offline after its first online load**, with four small AI components that run **on the phone**. Nothing is uploaded: photos, location and settings never leave the device.
 
@@ -83,7 +83,11 @@ We **do not redistribute the raw datasets** (they are downloaded by the notebook
 | Inter and Outfit fonts (bundled via `@fontsource`) | SIL Open Font License 1.1 | |
 | Country flags | Simple inline SVG drawings | |
 
-**Commercial use.** A commercial launch needs attention to: the CC BY-NC items (cotton / tea images, NLLB translations), PlantDoc's share-alike condition, WorldClim's terms, and the "check" rows above. The **source code in this repository has no licence file yet**, so by default all rights are reserved; add a licence (for example MIT or Apache-2.0) if you want others to reuse it.
+**Commercial use.** A commercial launch needs attention to: the CC BY-NC items (cotton / tea images, NLLB translations), PlantDoc's share-alike condition, WorldClim's terms, and the "check" rows above. The **source code in this repository is released under the [MIT License](LICENSE)**. That covers our code only: it does **not** change the licences of the datasets, pretrained models, translations or fonts listed above, which keep their own terms.
+
+## Licence
+
+Source code: [MIT](LICENSE), copyright (c) 2026 Elie Bubuya. Data, models and translations: see the licence tables above.
 
 ## Repository layout
 
