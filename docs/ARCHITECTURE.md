@@ -75,6 +75,8 @@ Notebook 01 (v2) trains the 20-way crop head with extra classes **banana, bean, 
 the calibrated gate) / diagnosis, always with probability bars. Held-out: not-plant AUROC 0.986, 84% of unsupported plants flagged, field-style crop/disease accuracy 72%/59%.
 `LiveCamera.tsx` runs the same ONNX model (~4 ms) on camera frames and unlocks the shutter only for plant + enough light + sharp (Laplacian variance); nothing leaves the phone.
 
+**First run needs internet.** The service worker precaches the whole app (about 30 MB) on the first online load; only after that is it offline. The home screen shows "Saving data for offline use…" until it is done, then "Ready: works without internet".
+
 ## 4 · Quality gates built in
 * `npm run build` runs `tsc --noEmit` (strict) first. `npm test` = parity tests with the notebooks.
 * Notebook asserts: no leaf group in both train and test; ONNX vs PyTorch numerical match; flattened-tree parity vs LightGBM; KB covers every label the model can emit.

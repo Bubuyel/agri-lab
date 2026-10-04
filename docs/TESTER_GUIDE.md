@@ -1,14 +1,15 @@
 # Agri Lab – tester guide (share this with your testers)
 
-**What you are testing:** a farm helper that works **without internet**. It has three parts:
+**What you are testing:** a farm helper that works **without internet** once it has been opened online one time. It has three parts:
 
 1. 📷 **Check my plant** – take a photo of ONE leaf. The app tells you the plant, whether it is healthy or sick, what to do and how to prevent it, in your language.
 2. 💰 **Crop prices** – choose your place and a crop: price now, expected price for the next 6 months, best month to sell, markets near you, other currencies.
 3. 🌧️ **Rain outlook** – will the next 3 months be wetter or drier than usual at your place?
 
-## Install (once, with internet, ~10 MB)
-1. Open the link you were given in **Chrome**.
-2. Wait until the home screen shows **"Ready: works without internet"**.
+## Install (first time needs internet, ~30 MB)
+**You must open the app once with internet so it can save everything. After that it works offline.**
+1. Open the link you were given in **Chrome**, on Wi-Fi or mobile data.
+2. Keep internet on and wait until the home screen shows **"Ready: works without internet"**.
 3. Chrome menu ⋮ → **Install app** (or *Add to Home screen*).
 4. Try it with the phone in **airplane mode**.
 

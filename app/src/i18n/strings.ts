@@ -10,7 +10,7 @@ import { STRINGS2 } from './strings2'
 type Dict = Record<string, string>
 
 const en: Dict = {
-  tagline: 'Your farm helper. Works without internet.',
+  tagline: "Your farm helper. Works offline after the first online use.",
   chooseLang: 'Choose your language',
   start: 'Start',
   back: 'Back',
@@ -25,7 +25,7 @@ const en: Dict = {
   'home.rainSub': 'Will the coming months be wet?',
   'home.settings': 'Settings',
   'home.offlineReady': 'Ready: works without internet',
-  'home.offlinePrep': 'Saving data for offline use…',
+  'home.offlinePrep': "Saving data for offline use… keep internet on until this is done",
   'scan.title': 'Check my plant',
   'scan.mt': 'Show machine translation (not reviewed)',
   'scan.which': 'Which plants can I check?',
@@ -109,7 +109,7 @@ const en: Dict = {
 }
 
 const fr: Dict = {
-  tagline: 'Votre assistant agricole. Fonctionne sans internet.',
+  tagline: "Votre assistant agricole. Fonctionne hors ligne après la première utilisation en ligne.",
   chooseLang: 'Choisissez votre langue',
   start: 'Commencer',
   back: 'Retour',
@@ -124,7 +124,7 @@ const fr: Dict = {
   'home.rainSub': 'Les prochains mois seront-ils pluvieux ?',
   'home.settings': 'Réglages',
   'home.offlineReady': 'Prêt : fonctionne sans internet',
-  'home.offlinePrep': 'Enregistrement des données hors ligne…',
+  'home.offlinePrep': "Enregistrement des données hors ligne… gardez internet jusqu'à la fin",
   'scan.title': 'Vérifier ma plante',
   'scan.mt': 'Voir la traduction automatique (non vérifiée)',
   'scan.which': 'Quelles plantes puis-je vérifier ?',
@@ -205,7 +205,7 @@ const fr: Dict = {
 }
 
 const sw: Dict = {
-  tagline: 'Msaidizi wako wa shamba. Hufanya kazi bila intaneti.',
+  tagline: "Msaidizi wa shamba lako. Hufanya kazi bila intaneti baada ya matumizi ya kwanza ukiwa na intaneti.",
   chooseLang: 'Chagua lugha yako',
   start: 'Anza',
   back: 'Rudi',
@@ -220,7 +220,7 @@ const sw: Dict = {
   'home.rainSub': 'Miezi ijayo itakuwa na mvua?',
   'home.settings': 'Mipangilio',
   'home.offlineReady': 'Tayari: inafanya kazi bila intaneti',
-  'home.offlinePrep': 'Inahifadhi data kwa matumizi bila intaneti…',
+  'home.offlinePrep': "Inahifadhi data kwa matumizi bila intaneti… acha intaneti iwake hadi imalize",
   'scan.title': 'Angalia mmea wangu',
   'scan.mt': 'Onyesha tafsiri ya kompyuta (haijakaguliwa)',
   'scan.which': 'Ni mimea gani naweza kuangalia?',
@@ -301,7 +301,7 @@ const sw: Dict = {
 }
 
 const rw: Dict = {
-  tagline: 'Umufasha wawe mu buhinzi. Ukora nta murandasi.',
+  
   chooseLang: 'Hitamo ururimi rwawe',
   start: 'Tangira',
   back: 'Subira inyuma',
@@ -316,7 +316,7 @@ const rw: Dict = {
   'home.rainSub': 'Amezi ari imbere azagwamo imvura?',
   'home.settings': 'Igenamiterere',
   'home.offlineReady': 'Biteguye: bikora nta murandasi',
-  'home.offlinePrep': 'Turabika amakuru yo gukoresha nta murandasi…',
+  
   'scan.title': 'Genzura igihingwa cyanjye',
   'scan.mt': 'Erekana ibyahinduwe na mudasobwa (bitaragenzurwa)',
   'scan.which': 'Ni ibihe bihingwa nshobora kugenzura?',
@@ -397,7 +397,7 @@ const rw: Dict = {
 }
 
 const rn: Dict = {
-  tagline: 'Umufasha wawe mu buhinzi. Akora nta murandasi.',
+  
   chooseLang: 'Hitamwo ururimi rwawe',
   start: 'Tangura',
   back: 'Subira inyuma',
@@ -412,7 +412,7 @@ const rn: Dict = {
   'home.rainSub': 'Amezi ari imbere azoba arimwo imvura?',
   'home.settings': 'Ivyo gutunganya',
   'home.offlineReady': 'Vyiteguye: bikora nta murandasi',
-  'home.offlinePrep': 'Turabika amakuru yo gukoresha nta murandasi…',
+  
   'scan.title': 'Raba igihingwa canje',
   'scan.mt': 'Erekana ivyahinduwe na mudasobwa (bitaragenzurwa)',
   'scan.which': 'Ni ibihe bihingwa nshobora kuraba?',
@@ -493,7 +493,7 @@ const rn: Dict = {
 }
 
 const so: Dict = {
-  tagline: 'Kaaliyahaaga beerta. Wuxuu shaqeeyaa internet la\'aan.',
+  
   chooseLang: 'Dooro luuqaddaada',
   start: 'Bilow',
   back: 'Dib u noqo',
@@ -508,7 +508,7 @@ const so: Dict = {
   'home.rainSub': 'Bilaha soo socda roob ma yeelan doonaan?',
   'home.settings': 'Dejinta',
   'home.offlineReady': 'Diyaar: wuxuu shaqeeyaa internet la\'aan',
-  'home.offlinePrep': 'Xogta ayaa la kaydinayaa…',
+  
   'scan.title': 'Hubi dhirtayda',
   'scan.mt': 'Muuji tarjumaadda kombuyuutarka (aan la hubin)',
   'scan.which': 'Dhirta noocee ah ayaan hubin karaa?',
@@ -589,7 +589,7 @@ const so: Dict = {
 }
 
 const yo: Dict = {
-  tagline: 'Olùrànlọ́wọ́ oko rẹ. Ó ń ṣiṣẹ́ láì lo íńtánẹ́ẹ̀tì.',
+  
   chooseLang: 'Yan èdè rẹ',
   start: 'Bẹ̀rẹ̀',
   back: 'Padà',
@@ -604,7 +604,7 @@ const yo: Dict = {
   'home.rainSub': 'Ṣé òjò yóò rọ̀ ní oṣù tó ń bọ̀?',
   'home.settings': 'Ètò',
   'home.offlineReady': 'Ó ti ṣetán: ó ń ṣiṣẹ́ láì lo íńtánẹ́ẹ̀tì',
-  'home.offlinePrep': 'À ń fi dátà pamọ́…',
+  
   'scan.title': 'Ṣàyẹ̀wò ọ̀gbìn mi',
   'scan.mt': 'Fi ìtumọ̀ kọ̀ǹpútà hàn (a kò tíì yẹ̀ ẹ́ wò)',
   'scan.which': 'Àwọn ọ̀gbìn wo ni mo lè ṣàyẹ̀wò?',

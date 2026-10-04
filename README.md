@@ -2,7 +2,9 @@
 
 **Live app: https://agrilab-nu.vercel.app** (open it on a phone, add it to the home screen, then use it in airplane mode)
 
-One phone app, **no internet needed after the first load**, four small AI components that run **on the phone**. Nothing is uploaded: photos, location and settings never leave the device.
+One phone app, **works offline after its first online load**, with four small AI components that run **on the phone**. Nothing is uploaded: photos, location and settings never leave the device.
+
+> **Important: open it online once first.** The app downloads everything it needs (about 30 MB: models, data, languages) the first time you open it with an internet connection. Wait for the green **"Ready: works without internet"** badge on the home screen. After that, and every time after, it works fully offline, including in airplane mode. If the first load is interrupted, just open it again while online.
 
 | # | Feature | What the farmer sees | Model (all on-device) | Size |
 |---|---|---|---|---|
@@ -35,6 +37,7 @@ Weak spots: tomato diseases on field photos, and any plant outside the supported
 * **Answers always in the chosen language**; machine-translated languages show a warning and an English/French/Spanish reference card.
 * **Listen button** uses the phone's own voice and is hidden when the phone has none (no voice packs are bundled, to keep the app small; the pack generator in notebook 09 remains).
 * Removed the "Ask" chat screen; premium minimal UI, Liquid-Glass tab bar, install guide and desktop phone frame.
+* **First-run notice everywhere:** the app, install guide and docs now say clearly that it must be opened **once online** to save everything, then works offline (16 languages).
 * **Deployed on Vercel** with cache headers for the service worker (`app/vercel.json`).
 * **Demo-video tooling** in `video/` (HTML scenes rendered frame by frame + ElevenLabs voice/effects/music). The videos themselves are not in the repo.
 

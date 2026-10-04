@@ -36,52 +36,52 @@
   "chrF_round_trip": 52.1
  },
  "rw": {
-  "strings": 173,
-  "machine": 143,
+  "strings": 176,
+  "machine": 146,
   "english_fallback": 30,
-  "chrF_round_trip": 39.5
+  "chrF_round_trip": 39.4
  },
  "rn": {
-  "strings": 173,
-  "machine": 147,
+  "strings": 176,
+  "machine": 150,
   "english_fallback": 26,
-  "chrF_round_trip": 40.4
+  "chrF_round_trip": 40.8
  },
  "so": {
-  "strings": 173,
-  "machine": 150,
+  "strings": 176,
+  "machine": 153,
   "english_fallback": 23,
-  "chrF_round_trip": 54.3
+  "chrF_round_trip": 54.1
  },
  "yo": {
-  "strings": 173,
-  "machine": 137,
+  "strings": 176,
+  "machine": 140,
   "english_fallback": 36,
-  "chrF_round_trip": 40.9
+  "chrF_round_trip": 41.2
  },
  "ha": {
   "strings": 291,
   "machine": 253,
   "english_fallback": 38,
-  "chrF_round_trip": 48.2
+  "chrF_round_trip": 48.3
  },
  "ig": {
   "strings": 291,
   "machine": 249,
   "english_fallback": 42,
-  "chrF_round_trip": 46.9
+  "chrF_round_trip": 46.7
  },
  "am": {
   "strings": 291,
   "machine": 247,
   "english_fallback": 44,
-  "chrF_round_trip": 47.5
+  "chrF_round_trip": 47.4
  },
  "om": {
   "strings": 291,
-  "machine": 233,
-  "english_fallback": 58,
-  "chrF_round_trip": 36.3
+  "machine": 232,
+  "english_fallback": 59,
+  "chrF_round_trip": 36.2
  },
  "ti": {
   "strings": 291,

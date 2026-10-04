@@ -1,8 +1,8 @@
 # Deploying Agri Lab to testers (today)
 
 Agri Lab ships as an **installable offline web app (PWA)**. Testers open one link in Chrome on Android, tap
-**Install / Add to Home screen**, and from then on it works with **no internet** (all models and data are cached by the
-service worker on first load).
+**Install / Add to Home screen**, and from then on it works with **no internet**. **The first open must be online:** the service worker downloads
+and caches all models and data (about 30 MB) on that first load, and only after the green "Ready" badge appears is it fully offline.
 
 ## 0 · Build
 
@@ -29,7 +29,7 @@ No server code, no database, no API keys: nothing to maintain.
 
 ## 2 · What testers do
 
-1. Open the link in **Chrome (Android)** while they have internet (≈ 10 MB first load).
+1. Open the link in **Chrome (Android)** **while they have internet** (≈ 30 MB first load; use Wi-Fi if possible). The app cannot work offline until this first online load has finished.
 2. Wait for the green **"Ready: works without internet"** on the home screen.
 3. Menu ⋮ → **Install app** / **Add to Home screen**.
 4. Turn on airplane mode and try it: scan a leaf, prices, rain.
@@ -60,6 +60,6 @@ Flutter / React-Native build.
 | Symptom | Cause / fix |
 |---|---|
 | "Install" button missing | Page not on HTTPS, or opened inside an in-app browser (WhatsApp/Facebook). Open in Chrome. |
-| Works online, fails offline | First load was interrupted. Open once on Wi-Fi until "Ready: works without internet" appears. |
+| Works online, fails offline | The first online load was missing or interrupted (the app must be opened once online to save its data). Open once on Wi-Fi until "Ready: works without internet" appears. |
 | "model is not installed" | `npm run sync-data` was run before the notebooks produced `labels.json` + the `.onnx`. Re-run both steps. |
 | Old version after redeploy | Close all tabs of the app once, reopen online. |
